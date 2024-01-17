@@ -39,18 +39,23 @@ void insertion_sort_list(listint_t **list)
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
-	listint_t *current = (*list)->next;
+	listint_t *current;
+	listint_t *insert_node;
+	listint_t *prev;
+	listint_t *temp;
+
+	current = (*list)->next;
 
 	while (current != NULL)
 	{
-		listint_t *insert_node = current;
-		listint_t *prev = current->prev;
+		insert_node = current;
+		prev = current->prev;
 
 		while (prev != NULL && insert_node->n < prev->n)
 		{
 			swap_nodes(list, insert_node, prev);
 
-			listint_t *temp = *list;
+			temp = *list;
 
 			while (temp != NULL)
 			{
