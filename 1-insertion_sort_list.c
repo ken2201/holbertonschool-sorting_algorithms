@@ -90,13 +90,18 @@ void add_node(listint_t **list, int value)
 	new_node->next = NULL;
 
 	if (*list == NULL)
+	{
 		*list = new_node;
+	}
 	else
 	{
 		listint_t *temp = *list;
 
 		while (temp->next != NULL)
+		{
 			temp = temp->next;
+		}
+
 		temp->next = new_node;
 		new_node->prev = temp;
 	}
