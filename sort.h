@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #ifndef SORTING_ALGORITHMS_H
 #define SORTING_ALGORITHMS_H
 
@@ -9,7 +9,7 @@ void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
 void swap(int *a, int *b);
-=======
+
 #ifndef HEADER_FILE_H
 #define HEADER_FILE_H
 
@@ -36,6 +36,6 @@ void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
->>>>>>> 892f4f0ea7d044f3fd82a51ded1cdfb7b449975e
+
 
 #endif
