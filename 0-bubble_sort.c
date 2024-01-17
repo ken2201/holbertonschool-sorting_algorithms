@@ -34,8 +34,9 @@ void bubble_sort(int *array, size_t size)
 			{
 				swap(&array[j], &array[j + 1]);
 
-				size_t k = 0;
+				size_t k;
 
+				k = 0;
 				while (k < size)
 				{
 					printf("%d", array[k]);
