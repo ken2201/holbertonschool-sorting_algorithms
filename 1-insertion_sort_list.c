@@ -38,12 +38,12 @@ void insertion_sort_list(listint_t **list)
 {
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
-
+	
 	listint_t *current;
 	listint_t *insert_node;
 	listint_t *prev;
 	listint_t *temp;
-
+	
 	current = (*list)->next;
 
 	while (current != NULL)
