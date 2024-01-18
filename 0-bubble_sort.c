@@ -24,7 +24,7 @@ void swap(int *a, int *b)
  */
 void bubble_sort(int *array, size_t size)
 {
-	size_t i = 0, j = 0, k = 0;
+	size_t i = 0, j = 0, k;
 
 	while (i < size - 1)
 	{
@@ -34,7 +34,7 @@ void bubble_sort(int *array, size_t size)
 			{
 				swap(&array[j], &array[j + 1]);
 
-
+				k = 0;
 				while (k < size)
 				{
 					printf("%d", array[k]);
