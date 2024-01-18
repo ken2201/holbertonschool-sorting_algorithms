@@ -1,75 +1,79 @@
 #include "sort.h"
 
-int lomuto_partition_scheme(int *array, int low, int high);
+void quicksort_recursive(int *array, int low, int high, size_t size);
+int lomuto_partition(int *array, int low, int high, size_t size);
 void swap(int *a, int *b);
-void quick_sort_alg(int *array, int low, int high);
-size_t get_size(int *array);
 
 /**
- * quick_sort - function that sort with quick sort method
- * @array: the array to be sorted
- * @size: the size of array
+ * quick_sort - Sorts an array of integers in ascending order using Quick sort
+ * @array: The array to be sorted
+ * @size: The size of the array
  */
 void quick_sort(int *array, size_t size)
 {
-	quick_sort_alg(array, 0, size - 1);
+	if (array == NULL || size < 2)
+		return;
+
+	quicksort_recursive(array, 0, size - 1, size);
 }
 
 /**
- * quick_sort - function that sort with quick sort method
- * @array: the array to be sorted
- * @high: the last index
- * @low: the first index
+ * quicksort_recursive - Recursively sorts the partitioned array
+ * @array: The array to be sorted
+ * @low: The low index of the partition
+ * @high: The high index of the partition
+ * @size: The size of the array
  */
-void quick_sort_alg(int *array, int low, int high)
+void quicksort_recursive(int *array, int low, int high, size_t size)
 {
-	int pivot_index = 0;
-
 	if (low < high)
 	{
-		pivot_index = lomuto_partition_scheme(array, low, high);
+		int pivot = lomuto_partition(array, low, high, size);
 
-		quick_sort_alg(array, low, pivot_index - 1);
-		quick_sort_alg(array, pivot_index + 1, high);
+		quicksort_recursive(array, low, pivot - 1, size);
+		quicksort_recursive(array, pivot + 1, high, size);
 	}
 }
 
 /**
- * lomuto_partion_scheme - lomuto partition of quick sorting
- * @array: an array to be sorted
- * @high: last index of the partition
- * @low: first index of partition
- * Return: the pivot index
+ * lomuto_partition - Implements Lomuto partition scheme
+ * @array: The array to be sorted
+ * @low: The low index of the partition
+ * @high: The high index of the partition
+ * @size: The size of the array
+ *
+ * Return: The index of the pivot element after partition
  */
-int lomuto_partition_scheme(int *array, int low, int high)
+int lomuto_partition(int *array, int low, int high, size_t size)
 {
-	int i, j, pivot;
+	int pivot = array[high];
+	int i = low - 1;
 
-	pivot = *(array + high);
-	i = low - 1;
-
-	for (j = low; j <= high - 1; j++)
+	for (int j = low; j <= high - 1; j++)
 	{
-		if (*(array + j) < pivot)
+		if (array[j] <= pivot)
 		{
 			i++;
-			swap((array + j), (array + i));
+			swap(&array[i], &array[j]);
+			print_array(array, size);
 		}
 	}
-	swap((array + high), (array + i + 1));
-	return (i + 1);
+
+	swap(&array[i + 1], &array[high]);
+	print_array(array, size);
+
+	return i + 1;
 }
 
 /**
- * swap - swaps to int value
- * @a: integer address
- * @b: integer address
+ * swap - Swaps two elements in an array
+ * @a: Pointer to the first element
+ * @b: Pointer to the second element
  */
 void swap(int *a, int *b)
 {
-	int tmp;
-
-	tmp = *a;
+	int temp = *a;
 	*a = *b;
-	*b = tmp;
+	*b = temp;
 }
+
